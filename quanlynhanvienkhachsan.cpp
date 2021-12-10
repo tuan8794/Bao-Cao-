@@ -168,6 +168,11 @@ class DauBep:public NhanVien{
         void xuat_File(ofstream& fileout);
 };
 
+
+
+// Ho Va Ten : Do Trung Tuan
+// MSSV: 6151071113
+// Nhom 37
 // doc file
 
 void NhanVien::doc_File(ifstream& filein){
@@ -235,6 +240,10 @@ long DauBep::TinhLuong(){
     return Luong;
 }
 
+
+// Ho Va Ten : Do Trung Tuan
+// MSSV: 6151071113
+// Nhom 37
 // Xuat file
 void NhanVien::xuat_File(ofstream& fileout){
 	fileout <<setw(12) << MaNV << setw(17) << this->getChucVu() << setw(20) << HoTen << setw(18);
@@ -242,6 +251,9 @@ void NhanVien::xuat_File(ofstream& fileout){
 }
 
 
+// Ho Va Ten : Do Trung Tuan
+// MSSV: 6151071113
+// Nhom 37
 // le tan
 void LeTan::doc_File(ifstream& filein){
 	NhanVien::doc_File(filein);
@@ -251,15 +263,25 @@ void LeTan::Nhap(){
 	NhanVien::Nhap();
 }
 
+
 void LeTan::Xuat(){
 	NhanVien::Xuat();
 }
 void LeTan::CapNhat() {
     NhanVien::CapNhat();
 }
+
+// Ho Va Ten : Do Trung Tuan
+// MSSV: 6151071113
+// Nhom 37
 void LeTan::xuat_File(ofstream& fileout){
 	NhanVien::xuat_File(fileout);
 }
+
+
+// Ho Va Ten : Do Trung Tuan
+// MSSV: 6151071113
+// Nhom 37
 
 // bao ve
 void BaoVe::doc_File(ifstream& filein){
@@ -276,10 +298,17 @@ void BaoVe::Xuat(){
 void BaoVe::CapNhat() {
     NhanVien::CapNhat();
 }
+
+// Ho Va Ten : Do Trung Tuan
+// MSSV: 6151071113
+// Nhom 37
 void BaoVe::xuat_File(ofstream& fileout){
 	NhanVien::xuat_File(fileout);
 }
 
+// Ho Va Ten : Do Trung Tuan
+// MSSV: 6151071113
+// Nhom 37
 // phuc vu
 void PhucVu::doc_File(ifstream& filein){
 	NhanVien::doc_File(filein);
@@ -296,10 +325,17 @@ void PhucVu::Xuat(){
 void PhucVu::CapNhat() {
     NhanVien::CapNhat();
 }
+
+// Ho Va Ten : Do Trung Tuan
+// MSSV: 6151071113
+// Nhom 37
 void PhucVu::xuat_File(ofstream& fileout){
 	NhanVien::xuat_File(fileout);
 }
 
+// Ho Va Ten : Do Trung Tuan
+// MSSV: 6151071113
+// Nhom 37
 // dau bep
 void DauBep::doc_File(ifstream& filein){
 	NhanVien::doc_File(filein);
@@ -316,6 +352,10 @@ void DauBep::Xuat(){
 void DauBep::CapNhat() {
     NhanVien::CapNhat();
 }
+
+// Ho Va Ten : Do Trung Tuan
+// MSSV: 6151071113
+// Nhom 37
 void DauBep::xuat_File(ofstream& fileout){
 	NhanVien::xuat_File(fileout);
 }
@@ -338,6 +378,10 @@ class QuanLyNhanVien{
 		void xuat_File(ofstream& fileout);
 };
 
+
+// Ho Va Ten : Do Trung Tuan
+// MSSV: 6151071113
+// Nhom 37
  //doc file
 void QuanLyNhanVien::doc_File(ifstream& filein){
 	filein.open("dulieu.txt", ios_base::in);
@@ -345,51 +389,34 @@ void QuanLyNhanVien::doc_File(ifstream& filein){
 		cout<<"\t\tKhong tim thay file!!";
 	}
 	else{
-		filein>>n;
+		filein >> n;
 		filein.ignore();
 		for(int i=0 ; i<n ;i++){
-			dsNhanVien[i]->doc_File(filein);			
-	}
+			NhanVien *NV;
+			char c;
+			filein >> c;
+			if( c == 'Le Tan'){
+				NV = new LeTan;
+				NV->doc_File(filein);
+			}
+			else if(c == 'Bao Ve'){
+				NV = new BaoVe;
+				NV->doc_File(filein);
+			}
+			else if( c == 'Phuc Vu'){
+				NV = new PhucVu;
+				NV->doc_File(filein);
+			}
+			else if( c = 'Dau Bep'){
+			NV = new DauBep;
+			NV->doc_File(filein);
+			}
+			dsNhanVien[i] = NV;
+		}
 		cout<<"\t\tDoc file thanh cong! ";	
 		filein.ignore();
 	}
 }
-
-
-//void QuanLyNhanVien::doc_File(ifstream& filein){
-//	filein.open("dulieu.txt", ios_base::in);
-//	if(!filein.is_open()){
-//		cout<<"\t\tKhong tim thay file!!";
-//	}
-//	else{
-//		filein >> n;
-//		filein.ignore();
-//		for(int i=0 ; i<n ;i++){
-//			NhanVien *NV;
-//			char c;
-//			filein >> c;
-//			if( c == 'Le Tan'){
-//				NV = new LeTan;
-//				NV->doc_File(filein);
-//			}
-//			else if(c == 'Bao Ve'){
-//				NV = new BaoVe;
-//				NV->doc_File(filein);
-//			}
-//			else if( c == 'Phuc Vu'){
-//				NV = new PhucVu;
-//				NV->doc_File(filein);
-//			}
-//			else if( c = 'Dau Bep'){
-//			NV = new DauBep;
-//			NV->doc_File(filein);
-//			}
-//			dsNhanVien[i] = NV;
-//		}
-//		cout<<"\t\tDoc file thanh cong! ";	
-//		filein.ignore();
-//	}
-//}
 
 //Nhap danh sach nhan vien
 void QuanLyNhanVien::NhapDS(){  
@@ -949,8 +976,11 @@ void QuanLyNhanVien::TongLuong(){
     cout<<endl<<"Tong tien khach san tra luong cho nhan vien: "<<tong<< " VND" << endl;
 }
 
-// xuat file
 
+// Ho Va Ten : Do Trung Tuan
+// MSSV: 6151071113
+// Nhom 37
+// xuat file
 void QuanLyNhanVien::xuat_File(ofstream& fileout){
 	fileout.open("xuatdulieu.txt", ios_base::out);
 	fileout << "========================================================================================================================" << endl;
@@ -1026,6 +1056,10 @@ int Menu(){
                 qlnv.TongLuong();
                 system("pause");
                 break;
+			
+// Ho Va Ten : Do Trung Tuan
+// MSSV: 6151071113
+// Nhom 37
             case 9:
             	cout<<"\nBan da doc file thanh cong!\n ";
             	system("cls");
@@ -1034,6 +1068,9 @@ int Menu(){
             	cout<<"\n\tNhan phim bat ky de tiep tuc! \n";
             	getch();
             	break;
+// Ho Va Ten : Do Trung Tuan
+// MSSV: 6151071113
+// Nhom 37			
             case 10:
             	system("cls");
             	if(daDoc){
